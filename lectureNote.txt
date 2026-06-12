@@ -1,0 +1,641 @@
+
+
+##  Routes
+
+We will build a portfolio website with these routes:
+
+what you need after installing the project is npm install react-router
+
+and
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+  NavLink,
+  Outlet,
+} from "react-router";
+
+
+createBrowserRouter creates the router.
+RouterProvider uses that router.
+NavLink is better than a normal <a> tag because it does not reload the whole page.
+Used inside a layout to show the selected child page.
+
+| Import                | Use                                          |
+| --------------------- | -------------------------------------------- |
+| `createBrowserRouter` | Creates the route configuration              |
+| `RouterProvider`      | Gives the route configuration to the app     |
+| `NavLink`             | Creates navigation links with active styling |
+| `Outlet`              | Shows child routes inside a layout           |
+
+
+```txt
+/
+ /about
+ /projects
+ /skills
+ /contact
+ /not-found
+```
+
+Meaning:
+
+```txt
+/          Home page
+/about     About page
+/projects  Projects page
+/skills    Skills page
+/contact   Contact page
+/wrong-url 404 Not Found page
+```
+
+---
+
+# 1. What You Must Understand First
+
+React has components, not pages.
+
+A component becomes a page when a route connects a URL to it.
+
+Example:
+
+```jsx
+{
+  path: "about",
+  element: <About />,
+}
+```
+
+This means:
+
+When the user visits `/about`, show the `About` component.
+
+---
+
+# 2. Create the React Project
+
+Run:
+
+```bash
+npm create vite@latest portfolio-routing
+cd portfolio-routing
+npm install
+npm install react-router
+npm run dev
+```
+
+Open:
+
+```txt
+http://localhost:5173
+```
+
+---
+
+# 3. Folder Structure
+
+Inside `src`, create this structure:
+
+```txt
+src/
+  main.jsx
+  App.jsx
+  index.css
+
+  pages/
+    Home.jsx
+    About.jsx
+    Projects.jsx
+    Skills.jsx
+    Contact.jsx
+    NotFound.jsx
+
+  components/
+    Navbar.jsx
+
+  layouts/
+    RootLayout.jsx
+```
+
+Important:
+
+Do not put all pages in `main.jsx`.
+
+`main.jsx` is only the starting point of the app.
+
+---
+
+# 4. What `main.jsx` Should Do
+
+Open `src/main.jsx`.
+
+It should look like this:
+
+```jsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+Explanation:
+
+```jsx
+import App from "./App.jsx";
+```
+
+This imports the main app.
+
+```jsx
+createRoot(document.getElementById("root")).render(...)
+```
+
+This tells React to display the app inside the `root` div in `index.html`.
+
+`main.jsx` should not contain routes.
+`main.jsx` should not contain page content.
+`main.jsx` should not display all components.
+
+Bad example:
+
+```jsx
+<Home />
+<About />
+<Projects />
+<Skills />
+<Contact />
+```
+
+Do not do this in `main.jsx`.
+
+That would show all pages at the same time, which is not routing.
+
+---
+
+# 5. Create Page Components
+
+## `src/pages/Home.jsx`
+
+```jsx
+export default function Home() {
+  return (
+    <div>
+      <h1>Hi, I am Your Name</h1>
+
+      <p>
+        I am a Full-Stack Developer, AI Agent-Based System Developer,
+        Cybersecurity Penetration Tester, experienced industry-based teacher,
+        and behavioral cybersecurity researcher.
+      </p>
+    </div>
+  );
+}
+```
+
+---
+
+## `src/pages/About.jsx`
+
+```jsx
+export default function About() {
+  return (
+    <div>
+      <h1>About Me</h1>
+
+      <p>
+        I build modern web applications as a Full-Stack Developer.
+      </p>
+
+      <p>
+        My work also includes AI agent-based systems, cybersecurity,
+        penetration testing, industry-based teaching, and behavioral
+        cybersecurity research.
+      </p>
+    </div>
+  );
+}
+```
+
+---
+
+## `src/pages/Projects.jsx`
+
+```jsx
+export default function Projects() {
+  return (
+    <div>
+      <h1>My Projects</h1>
+
+      <ul>
+        <li>Portfolio Website</li>
+        <li>AI Agent-Based System</li>
+        <li>Cybersecurity Audit Project</li>
+        <li>Full-Stack Web Application</li>
+      </ul>
+    </div>
+  );
+}
+```
+
+---
+
+## `src/pages/Skills.jsx`
+
+```jsx
+export default function Skills() {
+  return (
+    <div>
+      <h1>My Skills</h1>
+
+      <ul>
+        <li>Full-Stack Web Development</li>
+        <li>React</li>
+        <li>JavaScript</li>
+        <li>Backend Development</li>
+        <li>AI Agent-Based Systems</li>
+        <li>Cybersecurity</li>
+        <li>Penetration Testing</li>
+        <li>Industry-Based Teaching</li>
+        <li>Behavioral Cybersecurity Research</li>
+      </ul>
+    </div>
+  );
+}
+```
+
+---
+
+## `src/pages/Contact.jsx`
+
+```jsx
+export default function Contact() {
+  return (
+    <div>
+      <h1>Contact Me</h1>
+
+      <p>Email: yourname@example.com</p>
+      <p>GitHub: github.com/yourusername</p>
+      <p>LinkedIn: linkedin.com/in/yourusername</p>
+    </div>
+  );
+}
+```
+
+---
+
+## `src/pages/NotFound.jsx`
+
+```jsx
+export default function NotFound() {
+  return (
+    <div>
+      <h1>404 - Page Not Found</h1>
+      <p>The page you are looking for does not exist.</p>
+    </div>
+  );
+}
+```
+
+---
+
+# 6. Create Navbar
+
+Create `src/components/Navbar.jsx`.
+
+```jsx
+import { NavLink } from "react-router";
+
+export default function Navbar() {
+  const navStyle = ({ isActive }) => {
+    return {
+      fontWeight: isActive ? "bold" : "normal",
+      color: isActive ? "red" : "black",
+    };
+  };
+
+  return (
+    <nav>
+      <NavLink to="/" style={navStyle}>
+        Home
+      </NavLink>{" | "}
+
+      <NavLink to="/about" style={navStyle}>
+        About
+      </NavLink>{" | "}
+
+      <NavLink to="/projects" style={navStyle}>
+        Projects
+      </NavLink>{" | "}
+
+      <NavLink to="/skills" style={navStyle}>
+        Skills
+      </NavLink>{" | "}
+
+      <NavLink to="/contact" style={navStyle}>
+        Contact
+      </NavLink>
+    </nav>
+  );
+}
+```
+
+Important:
+
+`NavLink` is used for navigation links.
+
+It can also detect which page is active.
+
+---
+
+# 7. Create Root Layout
+
+Create `src/layouts/RootLayout.jsx`.
+
+```jsx
+import { Outlet } from "react-router";
+import Navbar from "../components/Navbar";
+
+export default function RootLayout() {
+  return (
+    <div>
+      <Navbar />
+
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+```
+
+Explanation:
+
+The `Navbar` appears on every page.
+
+The `Outlet` is where the selected page appears.
+
+So if the user visits `/about`, the `About` page appears inside `Outlet`.
+
+If the user visits `/skills`, the `Skills` page appears inside `Outlet`.
+
+---
+
+# 8. Create Routes in `App.jsx`
+
+Open `src/App.jsx`.
+
+```jsx
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router";
+
+import RootLayout from "./layouts/RootLayout";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Skills from "./pages/Skills";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "projects",
+        element: <Projects />,
+      },
+      {
+        path: "skills",
+        element: <Skills />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+```
+
+Explanation:
+
+`createBrowserRouter` creates the route list.
+
+`RouterProvider` activates the router inside the app.
+
+This route:
+
+```jsx
+{
+  index: true,
+  element: <Home />,
+}
+```
+
+means:
+
+Show `Home` when the user is at `/`.
+
+This route:
+
+```jsx
+{
+  path: "about",
+  element: <About />,
+}
+```
+
+means:
+
+Show `About` when the user is at `/about`.
+
+This route:
+
+```jsx
+{
+  path: "*",
+  element: <NotFound />,
+}
+```
+
+means:
+
+Show `NotFound` for any unknown URL.
+
+---
+
+# 9. Test the Routes
+
+Test these in the browser:
+
+```txt
+http://localhost:5173/
+http://localhost:5173/about
+http://localhost:5173/projects
+http://localhost:5173/skills
+http://localhost:5173/contact
+http://localhost:5173/something-wrong
+```
+
+Expected result:
+
+```txt
+/                  Home page
+/about             About page
+/projects          Projects page
+/skills            Skills page
+/contact           Contact page
+/something-wrong   404 page
+```
+
+---
+
+# 10. Add Simple CSS
+
+Open `src/index.css`.
+
+```css
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  padding: 16px;
+  background-color: #f2f2f2;
+}
+
+main {
+  padding: 24px;
+}
+
+a {
+  text-decoration: none;
+  margin-right: 8px;
+}
+```
+
+---
+
+# 11. Important Teaching Point
+
+The wrong way:
+
+```jsx
+// main.jsx
+<Home />
+<About />
+<Projects />
+<Skills />
+<Contact />
+```
+
+This displays everything at once.
+
+That is not routing.
+
+The correct way:
+
+```jsx
+// main.jsx
+<App />
+```
+
+Then:
+
+```jsx
+// App.jsx
+<RouterProvider router={router} />
+```
+
+Then React Router decides which page to show.
+
+---
+
+# 12. Class Practice
+
+Add a new route:
+
+```txt
+/services
+```
+
+Create:
+
+```txt
+src/pages/Services.jsx
+```
+
+The page should show:
+
+```txt
+Web Development
+AI Agent-Based System Development
+Penetration Testing
+Cybersecurity Training
+Research Consulting
+```
+
+Then update:
+
+1. `App.jsx`
+2. `Navbar.jsx`
+3. Test `/services`
+
+---
+
+# 13. Self-Check Questions
+
+1. What is the job of `main.jsx`?
+2. Why should we not put all pages inside `main.jsx`?
+3. What is the job of `App.jsx`?
+4. What does `RouterProvider` do?
+5. What does `Outlet` do?
+6. What does `index: true` mean?
+7. What does `path: "*"` do?
+8. What is the difference between showing components and routing?
+
+---
+
+# 14. Simple Summary
+
+`main.jsx` starts the app.
+
+`App.jsx` controls routing.
+
+`RootLayout.jsx` provides shared layout.
+
+`Navbar.jsx` provides navigation.
+
+`pages/` contains the page components.
+
+React Router chooses only one page to display based on the URL.
+
+That is the whole point of routing.
