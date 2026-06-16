@@ -14,10 +14,10 @@ const rout = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <Home /> },
-      { path: "a", element: <About /> },
-      { path: "b", element: <Projects /> },
+      { path: "about", element: <About /> },
+      { path: "projects", element: <Projects /> },
      
-      { path: "c", element: <Skills /> },
+      { path: "skills", element: <Skills /> },
       { path: "contact", element: <Contact /> },
       { path: "services", element: <Services /> },
       { path: "*", element: <NotFound /> },
