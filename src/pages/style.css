@@ -8,7 +8,7 @@
 .hero {
   text-align: center;
   padding: 100px 20px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background: linear-gradient(135deg, hsl(54, 83%, 53%), #ed3aed);
   color: white;
 }
 
@@ -26,7 +26,7 @@
   padding: 12px 24px;
   border: none;
   background: white;
-  color: #2563eb;
+  color: hsl(0, 73%, 42%);
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -50,7 +50,7 @@
 }
 
 .card {
-  background: #f8fafc;
+  background: #2dac4d;
   padding: 20px;
   border-radius: 10px;
   width: 250px;

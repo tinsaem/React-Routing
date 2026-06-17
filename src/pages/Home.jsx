@@ -4,7 +4,7 @@ function Home() {
   return (
     <div className="home-container">
       <header className="hero">
-        <h1>Welcome to My Website</h1>
+        <h1>Welcome to My sami Website</h1>
         <p>
           Build modern, fast, and responsive web applications with ease.
         </p>
