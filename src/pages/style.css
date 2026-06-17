@@ -7,11 +7,17 @@
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 100px 20px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  color: white;
-}
+  padding: 120px 20px; /* Slightly more vertical breathing room */
 
+  /* A more vibrant, seamless gradient */
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #7f00ff);
+
+  /* Crisp, clean white text ensures maximum readability */
+  color: #ffffff;
+
+  /* A soft text shadow gives it a premium, high-end feel */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
@@ -54,75 +60,9 @@
   padding: 20px;
   border-radius: 10px;
   width: 250px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card h3 {
   margin-bottom: 10px;
-}
-.page-box{
-  font-size: 30px;
-  font-style: italic;
-}
-.page-box {
-  max-width: 760px;
-  margin: 80px auto;
-  padding: 48px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, #111827, #1f2937);
-  color: #f9fafb;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: "Inter", "Segoe UI", sans-serif;
-}
-
-.page-label {
-  display: inline-block;
-  margin-bottom: 18px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.page-box h1 {
-  margin: 0 0 20px;
-  font-size: clamp(2.3rem, 5vw, 4rem);
-  line-height: 1.05;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.page-box p {
-  margin: 0 0 18px;
-  max-width: 640px;
-  color: #d1d5db;
-  font-size: 1.08rem;
-  line-height: 1.75;
-}
-
-.page-box p:last-child {
-  margin-bottom: 0;
-}
-
-.page-box:hover {
-  transform: translateY(-4px);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
-}
-
-@media (max-width: 768px) {
-  .page-box {
-    margin: 40px 18px;
-    padding: 32px 24px;
-    border-radius: 18px;
-  }
-
-  .page-box p {
-    font-size: 1rem;
-  }
 }
