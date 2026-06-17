@@ -1,5 +1,5 @@
 .home-container {
-  font-family: Arial, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   padding: 0;
   margin: 0;
 }
@@ -19,7 +19,7 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 .hero h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-bottom: 1rem;
 }
 
@@ -31,8 +31,8 @@
 .hero-btn {
   padding: 12px 24px;
   border: none;
-  background: white;
-  color: #2563eb;
+  background: rgb(199, 18, 18);
+  color: #f3f3f5;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -53,6 +53,9 @@
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+}
+.feature-list:hover {
+  background-color: aqua;
 }
 
 .card {
