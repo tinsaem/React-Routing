@@ -1,0 +1,57 @@
+/* ሙሉ ገጹን መሃል ላይ ለማድረግ እና ደስ የሚል ፈዘዝ ያለ ሰማያዊ Background ለመስጠት */
+.page-box {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 35px;
+  background-color: #1e293b; /* የካርዱ ጀርባ ጥቁር ሰማያዊ (Slate-800) */
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff; /* ፅሁፎቹ በሙሉ ነጭ እንዲሆኑ */
+  border: 1px solid #334155;
+}
+
+/* ከላይ ያለችው ትንሽ ፅሁፍ */
+.page-label {
+  font-size: 12px;
+  color: #38bdf8; /* ደማቅ ሰማያዊ (Sky blue) */
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Contact Me የሚለው አርዕስት */
+.page-box h1 {
+  color: #ffffff;
+  font-size: 32px;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #0ea5e9; /* ከስሩ ያለው መስመር ውብ ሰማያዊ */
+  padding-bottom: 12px;
+  font-weight: 700;
+}
+
+/* የእያንዳንዱ መስመር አቀማመጥ */
+.page-box p {
+  font-size: 16px;
+  color: #cbd5e1; /* የፅሁፉ ከለር ቀለል ያለ አመድማ */
+  margin: 20px 0;
+  line-height: 1.6;
+  padding: 10px;
+  background-color: #0f172a; /* የፅሁፎቹ ማቀፊያ መስመር ጥቁር */
+  border-radius: 8px;
+}
+
+/* የሊንኮቹ (የአድራሻዎቹ) ከለር */
+.page-box a {
+  color: #38bdf8; /* ሊንኮቹ ውብ ሰማያዊ */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ማውሱ ሊንኩ ላይ ሲያርፍ (Hover ሲያደርግ) */
+.page-box a:hover {
+  text-decoration: underline;
+  color: #7dd3fc; /* ይበልጥ ደመቅ ይላል */
+}
